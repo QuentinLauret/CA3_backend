@@ -18,6 +18,6 @@ During this process, I found that understanding the TestCase module was challeng
 
 In addressing security concerns, I focused on preventing SQL injection attacks. To achieve this, I utilized the Django auth library, which automatically guards against SQL injections. In addition, I also prevented CSRF attacks by including {% csrf_token %} in my files. To protect against CSS attacks, I utilized two methods:
 
-    First, I used the premade formsof Django classes whenever possible.
+First, I used the premade formsof Django classes whenever possible.
 
-    Second, I added |safe at certain locations in my HTML files to ensure that they are rendered correctly.
+Second, I added |safe at certain locations in my HTML files to ensure that they are rendered correctly.
