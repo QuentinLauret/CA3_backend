@@ -1,27 +1,23 @@
+# Testing
 
-#How to use the app
-To use the app, you have to go to http://127.0.0.1:8000/.
-You are then able to create an account or to log in.
+In order to test the functionality of the guitar shop app, I utilized the TestCase module, which allowed me to simulate potential user actions. I created a class that includes the following methods to thoroughly test the app:
 
+    test_creation: checks that a Guitar object created with valid data is saved successfully to the database.
 
-When you are logged in, it is possible to register a guitar by clicking on "add a new guitar", or view the existing guitars by clicking on "View all of the guitars".
+    test_gid_error: checks that attempting to create a Guitar object with the same gid as the valid guitar raises an exception.
 
-To add a new guitar you have to set an id, a name, a color, chose if the guitar is an electric one and its price.
+    test_invalid_creation: checks that attempting to create a Guitar object with invalid data raises an exception.
 
-To see the list of all of the guitars on http://127.0.0.1:8000/listing, you have to click on "View all of the guitars" on the home page. On this page, it is possible to edit or to delete a guitar.
+    test__update: checks that updating the valid Guitar object with new data works correctly and that the updated data is saved to the database.
 
-#Reset your password
-To reset your password, you have to click on "Reset Password" on the home page. Then, you will have to enter your email adress. The server will generate an email with a link to reset the password.
+    test_guitar_deletion: checks that deleting the valid Guitar object works correctly and that the object is removed from the database.
 
+During this process, I found that understanding the TestCase module was challenging. However, after reading the documentation, primarily on the Django website, I was able to complete the work.
 
-#My difficulties
+#Security
 
-The main issue in this project, was the understanding of the framework. At the beginning, I did not understand how to change the value of my table. But, thanks to the tutorials, I succeeded.
+In addressing security concerns, I focused on preventing SQL injection attacks. To achieve this, I utilized the Django auth library, which automatically guards against SQL injections. In addition, I also prevented CSRF attacks by including {% csrf_token %} in my files. To protect against CSS attacks, I utilized two methods:
 
-#Sources
+    First, I used the premade formsof Django classes whenever possible.
 
-To do this project, I used two courses :
-https://openclassrooms.com/fr/courses/7172076-debutez-avec-le-framework-django/7518336-mettez-a-jour-un-objet-modele-avec-un-modelform
-https://discord.com/channels/@me/1067797805965516830/1076570586765078609
-
-For the front-end, I used what I learned in my front-end classes.
+    Second, I added |safe at certain locations in my HTML files to ensure that they are rendered correctly.
