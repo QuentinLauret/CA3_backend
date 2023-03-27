@@ -14,7 +14,7 @@ In order to test the functionality of the guitar shop app, I utilized the TestCa
 
 During this process, I found that understanding the TestCase module was challenging. However, after reading the documentation, primarily on the Django website, I was able to complete the work.
 
-#Security
+# Security
 
 In addressing security concerns, I focused on preventing SQL injection attacks. To achieve this, I utilized the Django auth library, which automatically guards against SQL injections. In addition, I also prevented CSRF attacks by including {% csrf_token %} in my files. To protect against CSS attacks, I utilized two methods:
 
