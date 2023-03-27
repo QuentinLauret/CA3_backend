@@ -1,0 +1,57 @@
+<head>
+  <style>
+    body {
+  background-color: #f2f2f2;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2rem;
+  margin-top: 2rem;
+}
+
+p {
+  font-size: 1.2rem;
+  margin: 1rem 0;
+}
+
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.logged-in {
+  display: block;
+}
+
+.not-logged-in {
+  display: none;
+}
+
+  </style>
+  
+</head>
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}                    <!--If the user is logged in, he can use the app-->
+
+  Hi {{ user.username }}!
+  <p><a href="{% url 'logout' %}">Log Out</a></p>                     <!--Redirect the user to the logout page-->
+  <p><a href="/guit">Add a new guitar</a></p>                         <!--Redirect the user to the guit app-->
+  <p><a href="/listing">View all of the guitars</a></p>
+  <p><a href="{% url 'password_reset' %}">Reset Password</a></p>  <!-- Link to reset the password-->
+{% else %}                                        <!--If the user is not logged in, he cannot use the app, he has to log in-->
+
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">Log In</a>
+  <a href="{% url 'signup' %}">Sign Up</a>
+{% endif %}
+{% endblock %}

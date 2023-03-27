@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of guitars</title>
+    <!--{% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">-->
+    <style>
+    table {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+td, th {
+  border: 1px solid #333;
+  padding: 8px;
+}
+
+th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #555;
+  color: #fff;
+}
+
+h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+button {
+  display: block;
+  margin: 0 auto;
+  padding: 10px 20px;
+  background-color: #555;
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button a {
+  color: #fff;
+}
+
+button:hover {
+  background-color: #333;
+}
+
+a {
+  text-decoration: none;
+  color: #555;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #333;
+}
+
+.content-wrapper {
+  text-align: center;
+}
+
+
+    </style>
+
+</head>
+
+<body class="content-wrapper">
+    {% block content %}
+        {% if user.is_authenticated %}
+            <h1>List of the guitars</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Color</th>
+                        <th>Electric</th>
+                        <th>Price</th>
+                        
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for guitar in guitars %} <!--Shows the guitar details, for each guitar listed-->
+                    <tr>
+                        <!-- Shows the elements corresponding to the keys of "models.py"-->
+                        <td>{{ guitar.gid }}</td>
+                        <td>{{ guitar.name }}</td>
+                        <td>{{ guitar.color }}</td>
+                        <td>{{ guitar.isElectric }}</td>
+                        <td>{{ guitar.price }}</td>
+                        
+                        <td>
+                            <!--Allows to edit or delete the element with its Id-->
+                            <a href="/update/{{ guitar.gid }}">Edit</a>     
+                            <a href="/delete/{{ guitar.gid }}">Delete</a>    
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <br>
+            <br>
+            <button><a href="/guit">Register a guitar</a></button>
+            <p><a href="{% url 'logout' %}">Log Out</a></p>                     <!--Redirect the user to the logout page-->
+
+        {% else %}
+            <p>You are not logged in</p>
+            <a href="{% url 'login' %}">Log In</a>
+        {% endif %}
+    {% endblock %}
+</body>
+
+</html>

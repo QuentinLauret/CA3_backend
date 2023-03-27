@@ -1,0 +1,19 @@
+
+  /* Style the paragraphs */
+  p {
+    font-size: 18px;
+    line-height: 1.5;
+  }
+
+  /* Style the links */
+  a {
+    color: blue;
+    text-decoration: none;
+  }
+
+  /* Style the logout link */
+  a[href*="logout"] {
+    color: red;
+    font-weight: bold;
+  }
+

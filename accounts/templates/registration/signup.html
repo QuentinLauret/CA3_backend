@@ -1,0 +1,88 @@
+<head>
+  <style>
+
+body {
+  background-color: #f2f2f2;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-top: 2rem;
+}
+
+form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+  display: block;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  margin-top: 0.5rem;
+}
+
+button[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #0062cc;
+}
+
+.error-message {
+  color: red;
+}
+
+.error-message::before {
+  content: "⚠ ";
+}
+
+.success-message {
+  color: green;
+}
+
+.success-message::before {
+  content: "✔ ";
+}
+
+  </style>
+</head>
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+  <h2>Sign up</h2>
+  <form method="post">
+    {% csrf_token %}    <!-- To prevent a CSRF Attack-->
+    {{ form.as_p }}     <!-- To generate the sign up form, prevents CSS attacks-->
+    <button type="submit">Sign Up</button>
+  </form>
+{% endblock %}
